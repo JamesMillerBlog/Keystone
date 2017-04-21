@@ -1,0 +1,21 @@
+{
+  "name": "keystone",
+  "version": "1.0.0",
+  "dependencies": {
+  "keystone": "latest",
+  "underscore": "latest"
+  },
+  "scripts": {
+    "start": "web.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://JamesMillercus@github.com/JamesMillercus/Keystone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JamesMillercus/Keystone/issues"
+  },
+  "homepage": "https://github.com/JamesMillercus/Keystone#readme"
+}
