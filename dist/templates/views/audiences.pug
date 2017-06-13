@@ -1,16 +1,19 @@
-extends ../layouts/default
+extends ../layouts/sketchfab
 
 block intro
 	.container
-		h1 Audiences
+		// h1#h1header Audiences
 
 block content
-	.container
-		.row
-			.col-mid-4.col-lg-4
-				.row
-					each audience in audiences
-						.col-md-4.col-lg-4
-							h2: a(href='/audiences/' + audience.slug)= audience.title
-							if audience.image
-								img(src=audience._.image.limit(680,680)).img-rounded
+	// p.categories= audiences.categories
+	#sketchContainer
+		if locals.data
+			each audience in locals.data.active
+				p.url= audience.url
+				p.link= '/audiences/' + audience.slug
+				// p.categories= audience.categories
+
+block js
+	script(src='/js/bundle.min.js')
+	
+								
