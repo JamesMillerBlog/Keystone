@@ -152,3 +152,31 @@ section {
   bottom: 0;
   right: 0;
 }
+
+#email {
+  display: none;
+}
+
+.accountInfo {
+  position: absolute;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.description {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  top: 66%;
+  font-size: 30px;
+  color: white;
+}
