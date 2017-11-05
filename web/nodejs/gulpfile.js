@@ -27,7 +27,7 @@ const exec = require('child_process').exec;
 
 
 gulp.task('default', function(callback){
-	runSequence(['db','sitestyles', 'sass', 'jslibs', 'es6', 'server', 'models', 'updates', 'routes', 'html', 'favico', 'procfile', 'images', 'fonts', 'browserSync', 'watch'], callback )
+	runSequence(['sitestyles', 'sass', 'jslibs', 'es6', 'server', 'models', 'updates', 'routes', 'html', 'favico', 'procfile', 'images', 'fonts', 'browserSync', 'watch'], callback )
 });
 
 // gulp.task('build', function(callback){
@@ -46,13 +46,13 @@ gulp.task('watch', function(){
 	gulp.watch('app/public/customStyles/scss/**/*.scss', ['sass']); //sass
 });
 
-gulp.task('db', function(cb){
-	  exec('mongod -f ../mongo/config/mongod.conf', function (err, stdout, stderr) {
-	    console.log(stdout);
-	    console.log(stderr);
-	    cb(err);
-	  });
-});
+// gulp.task('db', function(cb){
+// 	  exec('mongod -f ../mongo/config/mongod.conf', function (err, stdout, stderr) {
+// 	    console.log(stdout);
+// 	    console.log(stderr);
+// 	    cb(err);
+// 	  });
+// });
 
 //task to put all admin files into dist folder
 gulp.task('favico', function(){
