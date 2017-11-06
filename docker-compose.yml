@@ -7,26 +7,29 @@ services:
       - "4000:4000"
     volumes:
       - "./web/nodejs:/usr/src/app"
+    links:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb
+      - NODE_ENV=production
     command: gulp
-  # mongodb:
-  #   image: mongo:latest
-  #   environment:
-  #     - MONGO_DATA_DIR=./web/mongo/data/db
-  #     - MONGO_LOG_DIR=./web/mongo/logs
-  #   volumes:
-  #     - ./web/mongo/data/db:/data/db
-  #   ports:
-  #     - 27017:27017
-  #   command: mongod -f ./web/mongo/config/mongod.conf # --quiet
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - ./web/mongo/data/db:/usr/src/mongo/data/db
+    ports: 
+      - "27017:27017"
+    # command: -f ./usr/src/mongo/config/mongod.conf # --quiet
+#mongod -f ./web/mongo/config/mongod.conf
 
-  # nginx:
-  #   build: ./web/nginx
-  #   ports:
-  #     - "80:80"
-  # rancher:
-  #   build: ./web/rancher
-  #   ports:
-  #     - "8080:8080"
+  nginx:
+    build: ./web/nginx
+    ports:
+      - "80:80"
+  rancher:
+    build: ./web/rancher
+    ports:
+      - "8080:8080"
 
 
   # command: bash -c "npm install && node ./dist/index.js"

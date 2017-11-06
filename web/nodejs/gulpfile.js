@@ -27,7 +27,7 @@ const exec = require('child_process').exec;
 
 
 gulp.task('default', function(callback){
-	runSequence(['sitestyles', 'sass', 'jslibs', 'es6', 'server', 'models', 'updates', 'routes', 'html', 'favico', 'procfile', 'images', 'fonts', 'browserSync', 'watch'], callback )
+	runSequence(['keystone-requirements', 'sitestyles', 'sass', 'jslibs', 'es6', 'server', 'models', 'updates', 'routes', 'html', 'favico', 'procfile', 'images', 'fonts', 'browserSync', 'watch'], callback )
 });
 
 // gulp.task('build', function(callback){
@@ -64,6 +64,11 @@ gulp.task('procfile', function(){
 	return gulp.src('app/Procfile')
 	.pipe(gulp.dest('dist/'))
 });
+
+gulp.task('keystone-requirements', function(){
+	return gulp.src('app/*.+(.env|.editorconfig|.eslintignore|.eslintrc)')
+	.pipe(gulp.dest('dist/'))
+})
 
 //task to optimise images + put them in dist folder
 gulp.task('images', function(){
