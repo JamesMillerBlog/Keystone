@@ -16,12 +16,9 @@ services:
   mongodb:
     image: mongo:latest
     volumes:
-      - ./web/mongo/data/db:/usr/src/mongo/data/db
+      - "./web/mongo/data/db:/data/db/"
     ports: 
       - "27017:27017"
-    # command: -f ./usr/src/mongo/config/mongod.conf # --quiet
-#mongod -f ./web/mongo/config/mongod.conf
-
   nginx:
     build: ./web/nginx
     ports:
@@ -31,6 +28,8 @@ services:
     ports:
       - "8080:8080"
 
+    # command: -f ./usr/src/mongo/config/mongod.conf # --quiet
+#mongod -f ./web/mongo/config/mongod.conf
 
   # command: bash -c "npm install && node ./dist/index.js"
     
