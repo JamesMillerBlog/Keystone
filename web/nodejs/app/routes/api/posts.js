@@ -77,8 +77,8 @@ function email(user, email, model, message){
 	    secure: false, // TLS requires secureConnection to be false
 	    port: 25, // port for secure SMT
 	    auth: {
-	        user: 'jamesandjamesmiller@gmail.com',
-	        pass: pw
+	        user: 'momomodels99@gmail.com',
+	        pass: 'Momentum99'
 	    },
 	    tls: {
 	    	rejectUnauthorized: false

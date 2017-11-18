@@ -22,6 +22,12 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
+	'session store': 'connect-redis',
+	'session store options': {
+		"host": 'redis', // Redis server hostname
+		"port": '6379', // Redis server port
+		"ttl": '260',
+	}
 });
 
 // Load your project's Models

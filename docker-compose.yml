@@ -3,35 +3,24 @@ services:
   nodejs:
     build: ./web/nodejs
     ports:
-      - "3000:3000"
       - "4000:4000"
     volumes:
       - "./web/nodejs:/usr/src/app"
-    links:
-      - mongodb
-    environment:
-      - MONGO_URI=mongodb
-      - NODE_ENV=production
     command: gulp
   mongodb:
     image: mongo:latest
     volumes:
       - "./web/mongo/data/db:/data/db/"
-    ports: 
-      - "27017:27017"
+  redis:
+    image: "redis:alpine"
   nginx:
     build: ./web/nginx
     ports:
       - "80:80"
-  rancher:
-    build: ./web/rancher
-    ports:
-      - "8080:8080"
+    depends_on:
+      - nodejs
 
-    # command: -f ./usr/src/mongo/config/mongod.conf # --quiet
-#mongod -f ./web/mongo/config/mongod.conf
-
-  # command: bash -c "npm install && node ./dist/index.js"
+  # command: bash -c "npm update && npm install"
     
 
   # to start: docker-compose up
