@@ -1,11 +1,21 @@
-version: "2"
+version: "3"
 services:
-  nodejs:
-    build: ./web/nodejs
+  nginx:
+    build: ./web/nginx
     ports:
-      - "4000:4000"
+      - "80:80"
+    depends_on:
+      - audiences
+      - login
+  audiences:
+    build: ./web/audiences
     volumes:
-      - "./web/nodejs:/usr/src/app"
+      - "./web/audiences:/usr/src/app"
+    command: gulp
+  login:
+    build: ./web/login
+    volumes:
+      - "./web/login:/usr/src/app"
     command: gulp
   mongodb:
     image: mongo:latest
@@ -13,12 +23,6 @@ services:
       - "./web/mongo/data/db:/data/db/"
   redis:
     image: "redis:alpine"
-  nginx:
-    build: ./web/nginx
-    ports:
-      - "80:80"
-    depends_on:
-      - nodejs
 
   # command: bash -c "npm update && npm install"
     
