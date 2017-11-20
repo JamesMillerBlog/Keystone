@@ -6,11 +6,13 @@ block intro
 
 block content
 	// p.categories= audiences.categories
+	#loadingScreen
 	#sketchContainer
 		if locals.data
 			each audience in locals.data.active
 				p.url= audience.url
 				p.link= '/audiences/' + audience.slug
+				p.name= audience.title
 				// p.categories= audience.categories
 
 block js

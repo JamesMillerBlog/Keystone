@@ -17,6 +17,7 @@ $( ".name" ).each(function( no ) {
 
 export function loadPage(e, selected) {
     var link = $(selected).attr('href');
+    console.log("CLICKED "+ link +"!");
     e.preventDefault();
     $( "#loadingScreen" ).css({"z-index": "100"});
 	$( "#loadingScreen" ).animate({

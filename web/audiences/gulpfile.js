@@ -43,7 +43,7 @@ gulp.task('watch', function(){
 	gulp.watch('app/public/js/*.js', ['es6']); // bundle.js
 	gulp.watch('app/public/js/modules/**/*.js', ['es6']); // front end js
 	gulp.watch('app/public/js/libs/*.js', ['jslibs']); // front end libs
-	gulp.watch('app/public/customStyles/scss/*.scss', ['sass']); //sass
+	gulp.watch('app/public/customStyles/scss/**/*.scss', ['sass']); //sass
 });
 
 //task to put all admin files into dist folder
@@ -142,7 +142,7 @@ gulp.task('sitestyles', function(){
 
 //task to turn sass into css and then reload browser
 gulp.task('sass', function(){
-	return gulp.src('app/public/customStyles/scss/*.scss')
+	return gulp.src('app/public/customStyles/scss/**/*.scss')
 	.pipe(sass())
 	.pipe(concatCss('styles.min.css'))
     .pipe(gulp.dest('dist/public/customStyles/css/'))
