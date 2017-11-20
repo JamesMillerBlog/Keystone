@@ -33,33 +33,18 @@ keystone.pre('render', middleware.nonAdminSignIn);
 
 // Import Route Controllers
 var routes = {
-	views: importRoutes('./views'),
-	api: importRoutes('./api')
+	views: importRoutes('./views')
 };
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
 	// Views
-	// app.get('/', routes.views.index);
-	// app.get('/blog/:category?', routes.views.blog);
-	// app.get('/blog/post/:post', routes.views.post);
-	// app.get('/gallery', routes.views.gallery);
 	app.get('/audiences/:audience', routes.views.audience);
 	app.get('/audiences', routes.views.audiences);
-	// app.get('/user/:user', routes.views.user);
-	// app.get('/user', routes.views.users);
-	// app.all('/contact', routes.views.contact);
-	// app.all('/signin', routes.views.signin);
-	// app.all('/signout', routes.views.signout);
-	// app.get('/signin', routes.views.signin);
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
-
-	// API
-	app.get('/api/post/list', keystone.middleware.api, routes.api.posts.list);
-	// app.all('/api/audience/create', keystone.initAPI, routes.api.posts.create);
-	app.get('/api/post/:id', keystone.middleware.api, routes.api.posts.get);
-	app.all('/api/post/:id/update', keystone.middleware.api, routes.api.posts.update);
-	// app.get('/api/audience/:id/remove', keystone.initAPI, routes.api.posts.remove);
-
+	//The 404 Route (ALWAYS Keep this as the last route)
+	app.get('*', function(req, res){
+	   res.redirect('/audiences');
+	});
 };

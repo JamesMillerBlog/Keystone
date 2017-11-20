@@ -24,6 +24,7 @@ exports = module.exports = function(req, res) {
 		});
 		// load in the selected data's content
 		q.exec(function(err, result){
+			if (result == null) res.redirect('/audiences');
 			locals.data.audience = result;
 			next(err);
 		});

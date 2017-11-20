@@ -27,7 +27,7 @@ const exec = require('child_process').exec;
 
 
 gulp.task('default', function(callback){
-	runSequence(['keystone-requirements', 'sitestyles', 'sass', 'jslibs', 'es6', 'server', 'models', 'updates', 'routes', 'html', 'favico', 'procfile', 'images', 'fonts', 'browserSync', 'watch'], callback )
+	runSequence(['server', 'sitestyles', 'sass', 'jslibs', 'es6', 'models', 'updates', 'routes', 'html', 'favico', 'images', 'fonts', 'browserSync', 'watch'], callback )
 });
 
 // gulp.task('build', function(callback){
@@ -43,32 +43,14 @@ gulp.task('watch', function(){
 	gulp.watch('app/public/js/*.js', ['es6']); // bundle.js
 	gulp.watch('app/public/js/modules/**/*.js', ['es6']); // front end js
 	gulp.watch('app/public/js/libs/*.js', ['jslibs']); // front end libs
-	gulp.watch('app/public/customStyles/scss/**/*.scss', ['sass']); //sass
+	gulp.watch('app/public/customStyles/scss/*.scss', ['sass']); //sass
 });
-
-// gulp.task('db', function(cb){
-// 	  exec('mongod -f ../mongo/config/mongod.conf', function (err, stdout, stderr) {
-// 	    console.log(stdout);
-// 	    console.log(stderr);
-// 	    cb(err);
-// 	  });
-// });
 
 //task to put all admin files into dist folder
 gulp.task('favico', function(){
 	return gulp.src('app/public/*.ico')
 	.pipe(gulp.dest('dist/public'))
 });
-
-gulp.task('procfile', function(){
-	return gulp.src('app/Procfile')
-	.pipe(gulp.dest('dist/'))
-});
-
-gulp.task('keystone-requirements', function(){
-	return gulp.src('app/*.+(.env|.editorconfig|.eslintignore|.eslintrc)')
-	.pipe(gulp.dest('dist/'))
-})
 
 //task to optimise images + put them in dist folder
 gulp.task('images', function(){
@@ -160,7 +142,7 @@ gulp.task('sitestyles', function(){
 
 //task to turn sass into css and then reload browser
 gulp.task('sass', function(){
-	return gulp.src('app/public/customStyles/scss/**/*.scss')
+	return gulp.src('app/public/customStyles/scss/*.scss')
 	.pipe(sass())
 	.pipe(concatCss('styles.min.css'))
     .pipe(gulp.dest('dist/public/customStyles/css/'))
@@ -177,7 +159,7 @@ gulp.task('nodemon', function (cb) {
 	}).on('start', function () {
 		//avoid nodemon being started multiple times
 		if (!started) {
-			console.log("server started");
+			// console.log("server started");
 			cb();
 			started = true;
 			setTimeout(function reload(){
@@ -186,7 +168,7 @@ gulp.task('nodemon', function (cb) {
 				});
 			}, 4000)
 		}else{
-			console.log("server restarted")
+			// console.log("server restarted")
 			setTimeout(function reload(){
 				browserSync.reload({
 					stream: false
@@ -195,10 +177,10 @@ gulp.task('nodemon', function (cb) {
 		}
 	})
 	.on('crash', function() {
-		console.log('nodemon.crash');
+		// console.log('nodemon.crash');
 	})
 	.on('restart', function() {
-		console.log('nodemon.restart');
+		// console.log('nodemon.restart');
 		// browserSync.reload();
 	})
 	.once('quit', function () {
@@ -212,7 +194,7 @@ gulp.task('browserSync', ['nodemon'], function() {
 	    proxy: "http://127.0.0.1:3000",
 		port: 4000
     })
-	console.log("Browser sync is working");
+	// console.log("Browser sync is working");
 });
 
 

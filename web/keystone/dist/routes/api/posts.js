@@ -2,8 +2,7 @@ var async = require('async'),
 	keystone = require('keystone');
 
 var Post = keystone.list('Audience'),
-	nodemailer = require('nodemailer'),
-	pw = 'breakinglincoln';
+	nodemailer = require('nodemailer');
 
 /**
  * List Posts

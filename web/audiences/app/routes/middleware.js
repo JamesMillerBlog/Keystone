@@ -18,14 +18,6 @@ var keystone = require('keystone');
 	or replace it with your own templates / logic.
 */
 exports.initLocals = function (req, res, next) {
-	res.locals.navLinks = [
-		{ label: 'Home', key: 'home', href: '/' },
-		// { label: 'Blog', key: 'blog', href: '/blog' },
-		// { label: 'Gallery', key: 'gallery', href: '/gallery' },
-		{ label: 'Audiences', key: 'audiences', href: '/audiences' },
-		{ label: 'Users', key: 'users', href: '/user' },
-		// { label: 'Contact', key: 'contact', href: '/contact' },
-	];
 	res.locals.user = req.user;
 
 	next();
@@ -52,7 +44,6 @@ exports.flashMessages = function (req, res, next) {
  */
 exports.requireUser = function (req, res, next) {
 	console.log("required user");
-	console.log("BRRRROOOKEN!!! AUDIENCES 1");
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
 		res.redirect('/signin');
@@ -69,7 +60,6 @@ exports.nonAdminSignIn = function(req, res, next) {
 
   	// console.log("Sign in recorded:");
   	// console.log(req.user);
-  	console.log("BRRRROOOKEN!!! AUDIENCES 2");
  //  	if(req.user){
  //  	  console.log("user logged in, admin privilidge? ");
 	//   console.log(req.user.isAdmin);

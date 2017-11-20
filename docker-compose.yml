@@ -5,18 +5,34 @@ services:
     ports:
       - "80:80"
     depends_on:
+      - index
+      - admin
       - audiences
-      - login
+  index:
+    build: ./web/index
+    volumes:
+      - "./web/index:/usr/src/app"
+    env_file: .env
+    command: gulp
+  admin:
+    build: ./web/admin
+    volumes:
+      - "./web/admin:/usr/src/app"
+    env_file: .env
+    command: gulp
   audiences:
     build: ./web/audiences
     volumes:
       - "./web/audiences:/usr/src/app"
+    env_file: .env
     command: gulp
-  login:
-    build: ./web/login
-    volumes:
-      - "./web/login:/usr/src/app"
-    command: gulp
+  # keystone:
+  #   build: ./web/keystone
+  #   volumes:
+  #     - "./web/keystone:/usr/src/app"
+  #   ports:
+  #     - "4000:4000"
+  #   command: gulp
   mongodb:
     image: mongo:latest
     volumes:
