@@ -54,7 +54,7 @@ export function activateForm() {
 		$.ajax({ 
 		   type: "POST",
 		   data: { details, user, email },
-		   url: "/api/post/"+modelID+"/update",
+		   url: "/api/audiences/"+modelID+"/update",
 		   success: function(data){        
 		     console.log("email(data.postOne.description)");
 		   }

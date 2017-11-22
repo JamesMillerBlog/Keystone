@@ -33,7 +33,8 @@ keystone.pre('render', middleware.nonAdminSignIn);
 
 // Import Route Controllers
 var routes = {
-	views: importRoutes('./views')
+	views: importRoutes('./views'),
+	api: importRoutes('./api')
 };
 
 // Setup Route Bindings
@@ -43,6 +44,13 @@ exports = module.exports = function (app) {
 	app.get('/audiences', routes.views.audiences);
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
+
+	app.get('/api/audiences/list', keystone.middleware.api, routes.api.audiences.list);
+	// app.all('/api/audience/create', keystone.initAPI, routes.api.posts.create);
+	app.get('/api/audiences/:id', keystone.middleware.api, routes.api.audiences.get);
+	app.all('/api/audiences/:id/update', keystone.middleware.api, routes.api.audiences.update);
+
+
 	//The 404 Route (ALWAYS Keep this as the last route)
 	app.get('*', function(req, res){
 	   res.redirect('/audiences');
