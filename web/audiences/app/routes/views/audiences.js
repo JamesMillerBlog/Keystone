@@ -16,6 +16,7 @@ exports = module.exports = function(req, res) {
 
 	// Load all products
 	view.on('init', function (next) {
+		var item = req;
 		keystone.list('Audience').model.find().exec(function (err, audiencemodels) {
 			if (err) return next(err);
 			locals.data.audiencemodels = audiencemodels;

@@ -8,7 +8,6 @@ services:
       - home
       - admin
       - audiences
-      - users
   home:
     build: ./web/home
     volumes:

@@ -23,8 +23,6 @@ exports.list = function(req, res) {
  * Get Post by ID
  */
 exports.get = function(req, res) {
-	console.log("params = ");
-	console.log(req.params.id);
 	Audience.model.find({ title: req.params.id}).exec(function(err, item) {
 		
 		if (err) return res.apiError('database error', err);

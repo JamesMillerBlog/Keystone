@@ -10,7 +10,7 @@ keystone.init({
 	'brand': 'Keystone',
 	'sass': 'public',
 	'static': 'public',
-	'favicon': 'public/favicon.ico',
+	'favicon': 'public/admin/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'pug',
 	'host':'127.0.0.1',

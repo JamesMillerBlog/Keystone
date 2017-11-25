@@ -18,6 +18,8 @@ var keystone = require('keystone');
 	or replace it with your own templates / logic.
 */
 exports.initLocals = function (req, res, next) {
+	
+	console.log("init locals");
 	res.locals.user = req.user;
 
 	next();
@@ -58,8 +60,8 @@ exports.requireUser = function (req, res, next) {
  
 exports.nonAdminSignIn = function(req, res, next) {
 
-  	// console.log("Sign in recorded:");
-  	// console.log(req.user);
+  	console.log("Sign in recorded:");
+  	console.log(req.user);
  //  	if(req.user){
  //  	  console.log("user logged in, admin privilidge? ");
 	//   console.log(req.user.isAdmin);

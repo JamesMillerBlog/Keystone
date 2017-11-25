@@ -14,7 +14,7 @@ keystone.init({
 	'views': 'templates/views',
 	'view engine': 'pug',
 	'host':'127.0.0.1',
-	'auto update': true,
+	// 'auto update': true,
 	'session': true,
 	'auth': true,
 	'user model': 'User',

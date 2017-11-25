@@ -2,7 +2,6 @@ var keystone = require('keystone');
 var Types = keystone.Field.Types;
 // var Manager = require('keystone').list('Manager');
 
-
 /**
  * User Model
  * ==========
@@ -13,7 +12,7 @@ User.add({
 	name: { type: Types.Name, required: true, index: true },
 	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
 	description: { type: Types.Html, wysiwyg: true, height: 10 },
-	// managers: { type: Types.Relationship, ref: 'Manager', many: true },
+	managers: { type: Types.Relationship, ref: 'Manager', many: true },
 	password: { type: Types.Password, initial: true, required: true },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
@@ -30,7 +29,7 @@ User.schema.virtual('canAccessKeystone').get(function () {
 */
 User.relationship({ ref: 'Audience', path: 'Audience', refPath: 'users' });
 
-// User.relationship({ ref: 'Manager', path: 'Manager', refPath: 'users' });
+User.relationship({ ref: 'Manager', path: 'Manager', refPath: 'users' });
 
 
 /**
